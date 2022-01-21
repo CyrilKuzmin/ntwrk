@@ -4,6 +4,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"log"
 	"os"
 	"runtime"
 	"time"
@@ -37,7 +38,8 @@ func main() {
 		client := ntwrk.NewClient(*host, port)
 		client.Whoami()
 	case "server":
-		ntwrk.StartServer(port)
+		srv := ntwrk.NewServer(port, log.Default())
+		srv.Start()
 	case "run":
 		clientFlags.Parse(os.Args[2:])
 		client := ntwrk.NewClient(*host, port)
