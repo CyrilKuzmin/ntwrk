@@ -19,10 +19,14 @@ func NewClient(host string, port int) *Client {
 	addr := fmt.Sprintf("%s:%d", host, port)
 	return &Client{
 		pingCount: 10,
-		timeout:   time.Second * time.Duration(5),
+		timeout:   time.Second * time.Duration(10),
 		addr:      addr,
 		cli:       true,
 	}
+}
+
+func (c *Client) SetMeasureDuration(d time.Duration) {
+	c.timeout = d
 }
 
 // testContext holds a test function, action name, and address to connect to.

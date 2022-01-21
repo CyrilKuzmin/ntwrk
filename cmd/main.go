@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"os"
 	"runtime"
+	"time"
 
 	"github.com/CyrilKuzmin/ntwrk/ntwrk"
 	"github.com/waits/update"
@@ -48,9 +49,11 @@ func main() {
 	case "lib":
 		clientFlags.Parse(os.Args[2:])
 		client := ntwrk.NewClient(*host, port)
+		client.SetMeasureDuration(5 * time.Second)
 		ds, us, err := client.Measure()
 		if err != nil {
 			fmt.Println(err)
+			return
 		}
 		fmt.Printf("{\n    \"download_speed\": \"%v\",\n    \"upload_speed\": \"%v\"\n}\n", ds, us)
 	default:

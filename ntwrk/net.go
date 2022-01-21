@@ -3,7 +3,6 @@ package ntwrk
 import (
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net"
 	"strings"
 	"time"
@@ -17,7 +16,7 @@ func download(conn net.Conn, timeout time.Duration) (bytes int64, err error) {
 		conn.SetDeadline(time.Now().Add(timeout))
 	}
 
-	bytes, _ = io.Copy(ioutil.Discard, conn)
+	bytes, _ = io.Copy(io.Discard, conn)
 	return
 }
 
