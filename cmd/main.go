@@ -9,7 +9,7 @@ import (
 	"runtime"
 	"time"
 
-	"github.com/CyrilKuzmin/ntwrk/ntwrk"
+	ntwrk "github.com/CyrilKuzmin/ntwrk/pkg"
 	"github.com/waits/update"
 )
 
